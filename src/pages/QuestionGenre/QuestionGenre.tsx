@@ -1,13 +1,13 @@
 import { FC } from "react";
+import Logo from "../../assets/img/melody-logo.png"
 
-
-const QGenre: FC = () => {
+const QuestionGenre: FC = () => {
     return(
             <section className="game game--genre">
               <header className="game__header">
                 <a className="game__back" href="#">
                   <span className="visually-hidden">Сыграть ещё раз</span>
-                  <img className="game__logo" src="img/melody-logo-ginger.png" alt="Угадай мелодию"/>
+                  <img className="game__logo" src={Logo} alt="Угадай мелодию"/>
                 </a>
 
 
@@ -72,4 +72,4 @@ const QGenre: FC = () => {
     )
 }
 
-export default QGenre;
+export default QuestionGenre;

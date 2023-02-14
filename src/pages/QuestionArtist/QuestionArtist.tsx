@@ -1,13 +1,15 @@
 import { FC } from "react";
+import Logo from "../../assets/img/melody-logo.png"
+import PlaceHolder from "../../assets/img/placeholder.jpg"
 
 
-const QArtist: FC = () => {
+const QuestionArtist: FC = () => {
     return(
       <section className="game game--artist">
         <header className="game__header">
           <a className="game__back" href="#">
             <span className="visually-hidden">Сыграть ещё раз</span>
-            <img className="game__logo" src="img/melody-logo-ginger.png" alt="Угадай мелодию"/>
+            <img className="game__logo" src={Logo} alt="Угадай мелодию"/>
           </a>
 
 
@@ -33,7 +35,7 @@ const QArtist: FC = () => {
             <div className="artist">
               <input className="artist__input visually-hidden" type="radio" name="answer" value="artist-1" id="answer-1"/>
               <label className="artist__name" htmlFor="answer-1">
-                <img className="artist__picture" src="img/placeholder.jpg" alt="Пелагея"/>
+                <img className="artist__picture" src={PlaceHolder} alt="Пелагея"/>
                 Пелагея
               </label>
             </div>
@@ -41,7 +43,7 @@ const QArtist: FC = () => {
             <div className="artist">
               <input className="artist__input visually-hidden" type="radio" name="answer" value="artist-2" id="answer-2"/>
               <label className="artist__name" htmlFor="answer-2">
-                <img className="artist__picture" src="img/placeholder.jpg" alt="Пелагея"/>
+                <img className="artist__picture" src={PlaceHolder} alt="Пелагея"/>
                 Краснознаменная дивизия имени моей бабушки
               </label>
             </div>
@@ -49,7 +51,7 @@ const QArtist: FC = () => {
             <div className="artist">
               <input className="artist__input visually-hidden" type="radio" name="answer" value="artist-3" id="answer-3"/>
               <label className="artist__name" htmlFor="answer-3">
-                <img className="artist__picture" src="img/placeholder.jpg" alt="Пелагея"/>
+                <img className="artist__picture" src={PlaceHolder} alt="Пелагея"/>
                 Lorde
               </label>
             </div>
@@ -59,4 +61,4 @@ const QArtist: FC = () => {
     )
 }
 
-export default QArtist;
+export default QuestionArtist;
