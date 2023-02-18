@@ -3,7 +3,7 @@ import Logo from "../../assets/img/melody-logo.png"
 import PlaceHolder from "../../assets/img/placeholder.jpg"
 
 
-const QuestionArtist: FC = () => {
+const QuestionArtistScreen: FC = () => {
     return(
       <section className="game game--artist">
         <header className="game__header">
@@ -61,4 +61,4 @@ const QuestionArtist: FC = () => {
     )
 }
 
-export default QuestionArtist;
+export default QuestionArtistScreen;

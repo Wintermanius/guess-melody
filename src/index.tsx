@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
+import { questions } from './mocks/questions';
 
 const Setting = {
   ErrorsCount: 3,
@@ -17,6 +18,7 @@ root.render(
   <React.StrictMode>
     <App 
       errorsCount = {Setting.ErrorsCount}
+      questions = {questions}
     />
   </React.StrictMode>
 );

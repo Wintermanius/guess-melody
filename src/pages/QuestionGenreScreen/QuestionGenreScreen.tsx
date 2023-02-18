@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Logo from "../../assets/img/melody-logo.png"
 
-const QuestionGenre: FC = () => {
+const QuestionGenreScreen: FC = () => {
     return(
             <section className="game game--genre">
               <header className="game__header">
@@ -72,4 +72,4 @@ const QuestionGenre: FC = () => {
     )
 }
 
-export default QuestionGenre;
+export default QuestionGenreScreen;
