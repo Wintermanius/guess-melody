@@ -1,10 +1,14 @@
 import { FC } from "react";
+import { Helmet } from "react-helmet-async";
 import Logo from "../../assets/img/melody-logo.png"
 
 
 const Results: FC = () => {
 return(
     <section className="result">
+      <Helmet>
+        <title>Угадай мелодию. Вы настоящий меломан!</title>
+      </Helmet>
       <div className="result-logout__wrapper">
         <a className="result-logout__link" href="#">Выход</a>
       </div>
