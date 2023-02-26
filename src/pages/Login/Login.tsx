@@ -2,16 +2,17 @@ import { FC } from "react";
 import { Helmet } from "react-helmet-async";
 import Logo from "../../assets/img/melody-logo.png"
 
-
 const Login: FC = () => {
   return(
     <section className="login">
       <Helmet>
         <title>Угадай мелодию. Вы настоящий меломан!</title>
       </Helmet>
+
       <div className="login__logo"><img src={Logo} alt="Угадай мелодию" width="186" height="83"/></div>
       <h2 className="login__title">Вы настоящий меломан!</h2>
       <p className="login__text">Хотите узнать свой результат? Представтесь!</p>
+
       <form className="login__form" action="">
         <p className="login__field">
           <label className="login__label" htmlFor="name">Логин</label>
@@ -24,6 +25,7 @@ const Login: FC = () => {
         </p>
         <button className="login__button button" type="submit">Войти</button>
       </form>
+
       <button className="replay" type="button">Сыграть ещё раз</button>
     </section>
   )

@@ -9,8 +9,6 @@ export type QuestionGenre = {
   type: string
 }
 
-
-
 export type ArtistAnswer = {
   artist: string
   picture: string
@@ -26,8 +24,6 @@ export type QuestionArtist = {
   song: Song
   type: string
 }
-
-
 
 export type Question = QuestionArtist | QuestionGenre
 

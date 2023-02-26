@@ -5,10 +5,10 @@ import Logo from "../../assets/img/melody-logo.png"
 import { AppRoute } from "../../const";
 
 type WelcomeScreenProps = {
-    errorsCount: number;
+  errorsCount: number;
 }
 
-const WelcomeScreen: FC<WelcomeScreenProps> = ({ errorsCount }) => {
+const WelcomeScreen: FC <WelcomeScreenProps> = ({ errorsCount }) => {
   const navigate = useNavigate()
     return (
       <section className="welcome">

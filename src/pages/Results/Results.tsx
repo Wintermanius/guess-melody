@@ -2,7 +2,6 @@ import { FC } from "react";
 import { Helmet } from "react-helmet-async";
 import Logo from "../../assets/img/melody-logo.png"
 
-
 const Results: FC = () => {
 return(
     <section className="result">

@@ -11,33 +11,30 @@ import WelcomeScreen from "../../pages/WelcomeScreen/WelcomeScreen";
 import { Questions } from "../../types/question";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
-
 type AppScreenProps = {
-    errorsCount: number;
-    questions: Questions
+  errorsCount: number;
+  questions: Questions
 }
 
-
-const App: FC<AppScreenProps> =({errorsCount, questions}) => {
+const App: FC <AppScreenProps> =({ errorsCount, questions }) => {
   return (
     <HelmetProvider>
     <BrowserRouter>
       <Routes>
         <Route path={AppRoute.Root} element={<WelcomeScreen errorsCount={errorsCount} />}/>
+        <Route path={AppRoute.Login} element={<Login />} />
+        <Route path={AppRoute.Game} element={<GameScreen questions={questions}/>}/>
         <Route path={AppRoute.Result} element={
           <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
             <Results />
           </PrivateRoute>
         } />
-        <Route path={AppRoute.Login} element={<Login />} />
         <Route path={AppRoute.Lose} element={<Fail />} />
         <Route path='*' element={<NotFound />} />
-        <Route path={AppRoute.Game} element={<GameScreen questions={questions}/>}/>
       </Routes>
     </BrowserRouter>
     </HelmetProvider>
   )
 }
-
 
 export default App
