@@ -8,7 +8,7 @@ type QuestionGenreScreenProps = {
   onAnswer: (question: QuestionGenre, answers: UserGenreQuestionAnswer) => void
 }
 
-const QuestionGenreScreen: FC <QuestionGenreScreenProps> = ({ question, onAnswer }) => {
+const QuestionGenreScreen: FC<QuestionGenreScreenProps> = ({ question, onAnswer }) => {
 
   const {answers, genre} = question
   const [userAnswers, setUserAnswers] = useState([false, false, false, false])

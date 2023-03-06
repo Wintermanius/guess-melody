@@ -9,7 +9,7 @@ type GameScreenProps = {
   questions: Questions
 }
 
-const GameScreen: FC <GameScreenProps> = ({ questions }) => {
+const GameScreen: FC<GameScreenProps> = ({ questions }) => {
 
   const [step, setStep] = useState(FIRST_GAME_STEP)
 
@@ -41,4 +41,4 @@ const GameScreen: FC <GameScreenProps> = ({ questions }) => {
   }
 }
 
-export default GameScreen;
+export default GameScreen

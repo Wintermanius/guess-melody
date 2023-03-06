@@ -16,7 +16,7 @@ type AppScreenProps = {
   questions: Questions
 }
 
-const App: FC <AppScreenProps> =({ errorsCount, questions }) => {
+const App: FC<AppScreenProps> =({ errorsCount, questions }) => {
   return (
     <HelmetProvider>
     <BrowserRouter>

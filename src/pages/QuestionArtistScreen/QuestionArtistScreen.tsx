@@ -8,7 +8,7 @@ type QuestionArtistScreenProps = {
   onAnswer: (question: QuestionArtist, answer: UserArtistQuestionAnswer) => void;
 }
 
-const QuestionArtistScreen: FC <QuestionArtistScreenProps> = ({ question, onAnswer }) => {
+const QuestionArtistScreen: FC<QuestionArtistScreenProps> = ({ question, onAnswer }) => {
 
   const {answers, song} = question;
 

@@ -8,7 +8,7 @@ type WelcomeScreenProps = {
   errorsCount: number;
 }
 
-const WelcomeScreen: FC <WelcomeScreenProps> = ({ errorsCount }) => {
+const WelcomeScreen: FC<WelcomeScreenProps> = ({ errorsCount }) => {
   const navigate = useNavigate()
     return (
       <section className="welcome">
