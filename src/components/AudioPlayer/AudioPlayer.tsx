@@ -2,14 +2,14 @@ import {Fragment, useState, useEffect, useRef, FC} from 'react';
 import cn from 'classnames';
 
 type AudioPlayerProps = {
-  autoPlay: boolean;
+  isPlaying: boolean;
   src: string;
+  onPlayButtonClick: () => void;
 }
 
-const AudioPlayer: FC<AudioPlayerProps> = ({autoPlay, src}) => {
+const AudioPlayer: FC<AudioPlayerProps> = ({isPlaying, src, onPlayButtonClick}) => {
 
   const [isLoading, setIsLoading] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(autoPlay);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -48,7 +48,7 @@ const AudioPlayer: FC<AudioPlayerProps> = ({autoPlay, src}) => {
         )}
         type="button"
         disabled={isLoading}
-        onClick={() => setIsPlaying(!isPlaying)}
+        onClick={onPlayButtonClick}
       />
       <div className="track__status">
         <audio src={src} ref={audioRef} />

@@ -1,4 +1,4 @@
-import { ChangeEvent, FC } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Logo from "../../assets/img/melody-logo.png"
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
@@ -12,6 +12,7 @@ type QuestionArtistScreenProps = {
 const QuestionArtistScreen: FC<QuestionArtistScreenProps> = ({ question, onAnswer }) => {
 
   const {answers, song} = question;
+  const [isPlaying, setIsPlaying] = useState(true);
 
   return(
     <section className="game game--artist">
@@ -37,8 +38,9 @@ const QuestionArtistScreen: FC<QuestionArtistScreenProps> = ({ question, onAnswe
         <div className="game__track">
           <div className="track">
             <AudioPlayer
-              autoPlay
+              isPlaying={isPlaying}
               src={song.src}
+              onPlayButtonClick={() => setIsPlaying(!isPlaying)}
             />
           </div>
         </div>
