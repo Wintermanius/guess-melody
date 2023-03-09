@@ -1,19 +1,18 @@
 import { ChangeEvent, FC, FormEvent, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Logo from "../../assets/img/melody-logo.png"
-import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 import { QuestionGenre, UserGenreQuestionAnswer } from "../../types/question";
 
 type QuestionGenreScreenProps = {
   question: QuestionGenre
   onAnswer: (question: QuestionGenre, answers: UserGenreQuestionAnswer) => void
+  renderPlayer: (src: string, playerIndex: number) => JSX.Element;
 }
 
-const QuestionGenreScreen: FC<QuestionGenreScreenProps> = ({ question, onAnswer }) => {
+const QuestionGenreScreen: FC<QuestionGenreScreenProps> = ({ question, onAnswer, renderPlayer }) => {
 
   const {answers, genre} = question
   const [userAnswers, setUserAnswers] = useState([false, false, false, false])
-  const [activePlayer, setActivePlayer] = useState(0);
 
   return(
     <section className="game game--genre">
@@ -46,11 +45,7 @@ const QuestionGenreScreen: FC<QuestionGenreScreenProps> = ({ question, onAnswer 
 
               <div key={keyValue} className="track">
                 
-                <AudioPlayer
-                  isPlaying={id === activePlayer}
-                  src={answer.src}
-                  onPlayButtonClick = {() => setActivePlayer(activePlayer === id ? -1 : id)}
-                />
+                {renderPlayer(answer.src, id)}
 
                 <div className="game__answer">
                   <input className="game__input visually-hidden" type="checkbox" name="answer"

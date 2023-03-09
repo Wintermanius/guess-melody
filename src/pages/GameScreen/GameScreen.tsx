@@ -4,6 +4,10 @@ import { AppRoute, FIRST_GAME_STEP, GameType } from "../../const";
 import { Questions, QuestionArtist, QuestionGenre } from "../../types/question";
 import QuestionArtistScreen from "../QuestionArtistScreen/QuestionArtistScreen";
 import QuestionGenreScreen from "../QuestionGenreScreen/QuestionGenreScreen";
+import withAudioPlayer from "../../components/hocs/with-AudioPlayer/with-AudioPlayer";
+
+const QuestionArtistScreenWrapped = withAudioPlayer(QuestionArtistScreen);
+const QuestionGenreScreenWrapped = withAudioPlayer(QuestionGenreScreen);
 
 type GameScreenProps = {
   questions: Questions
@@ -22,7 +26,7 @@ const GameScreen: FC<GameScreenProps> = ({ questions }) => {
   switch (question.type) {
     case GameType.Artist:
       return (
-        <QuestionArtistScreen
+        <QuestionArtistScreenWrapped
           key={step}
           question={question as QuestionArtist}
           onAnswer={() => setStep((prevStep) => prevStep + 1)}
@@ -30,7 +34,7 @@ const GameScreen: FC<GameScreenProps> = ({ questions }) => {
       )
     case GameType.Genre:
       return (
-        <QuestionGenreScreen
+        <QuestionGenreScreenWrapped
           key={step}
           question={question as QuestionGenre}
           onAnswer={() => setStep((prevStep) => prevStep + 1)}
@@ -41,4 +45,4 @@ const GameScreen: FC<GameScreenProps> = ({ questions }) => {
   }
 }
 
-export default GameScreen
+export default GameScreen;

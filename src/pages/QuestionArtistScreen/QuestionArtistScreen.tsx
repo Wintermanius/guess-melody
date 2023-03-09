@@ -1,18 +1,17 @@
 import { ChangeEvent, FC, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Logo from "../../assets/img/melody-logo.png"
-import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 import { QuestionArtist, UserArtistQuestionAnswer } from "../../types/question";
 
 type QuestionArtistScreenProps = {
   question: QuestionArtist;
   onAnswer: (question: QuestionArtist, answer: UserArtistQuestionAnswer) => void;
+  renderPlayer: (src: string, playerIndex: number) => JSX.Element;
 }
 
-const QuestionArtistScreen: FC<QuestionArtistScreenProps> = ({ question, onAnswer }) => {
+const QuestionArtistScreen: FC<QuestionArtistScreenProps> = ({ question, onAnswer, renderPlayer }) => {
 
   const {answers, song} = question;
-  const [isPlaying, setIsPlaying] = useState(true);
 
   return(
     <section className="game game--artist">
@@ -37,11 +36,7 @@ const QuestionArtistScreen: FC<QuestionArtistScreenProps> = ({ question, onAnswe
         <h2 className="game__title">Кто исполняет эту песню?</h2>
         <div className="game__track">
           <div className="track">
-            <AudioPlayer
-              isPlaying={isPlaying}
-              src={song.src}
-              onPlayButtonClick={() => setIsPlaying(!isPlaying)}
-            />
+            {renderPlayer(song.src, 0)}
           </div>
         </div>
 
