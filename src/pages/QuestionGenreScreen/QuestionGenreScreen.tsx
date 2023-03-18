@@ -1,15 +1,15 @@
-import { ChangeEvent, FC, FormEvent, useState } from "react";
+import { ChangeEvent, FC, FormEvent, PropsWithChildren, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Logo from "../../assets/img/melody-logo.png"
 import { QuestionGenre, UserGenreQuestionAnswer } from "../../types/question";
 
-type QuestionGenreScreenProps = {
+type QuestionGenreScreenProps = PropsWithChildren<{
   question: QuestionGenre
   onAnswer: (question: QuestionGenre, answers: UserGenreQuestionAnswer) => void
   renderPlayer: (src: string, playerIndex: number) => JSX.Element;
-}
+}>
 
-const QuestionGenreScreen: FC<QuestionGenreScreenProps> = ({ question, onAnswer, renderPlayer }) => {
+const QuestionGenreScreen: FC<QuestionGenreScreenProps> = ({ question, onAnswer, renderPlayer, children }) => {
 
   const {answers, genre} = question
   const [userAnswers, setUserAnswers] = useState([false, false, false, false])
@@ -26,11 +26,7 @@ const QuestionGenreScreen: FC<QuestionGenreScreenProps> = ({ question, onAnswer,
           <span className="visually-hidden">Сыграть ещё раз</span>
           <img className="game__logo" src={Logo} alt="Угадай мелодию"/>
         </a>
-        <div className="game__mistakes">
-          <div className="wrong"></div>
-          <div className="wrong"></div>
-          <div className="wrong"></div>
-        </div>
+        {children}
       </header>
 
       <section className="game__screen">

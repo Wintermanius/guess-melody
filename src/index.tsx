@@ -3,12 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
-import { questions } from './mocks/questions';
-
-const Setting = {
-  ErrorsCount: 3,
-} as const
-
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -16,10 +12,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App 
-      errorsCount = {Setting.ErrorsCount}
-      questions = {questions}
-    />
+    <Provider store = {store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 
