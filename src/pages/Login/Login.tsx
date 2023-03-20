@@ -1,8 +1,35 @@
-import { FC } from "react";
+import { FC, FormEvent, useRef } from "react";
 import { Helmet } from "react-helmet-async";
+import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/img/melody-logo.png"
+import { AppRoute } from "../../const";
+import { useAppDispatch } from "../../hooks";
+import { loginAction } from "../../store/api-actions";
+import { AuthData } from "../../types/auth-data";
 
 const Login: FC = () => {
+
+  const loginRef = useRef<HTMLInputElement | null>(null);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const onSubmit = (authData: AuthData) => {
+    dispatch(loginAction(authData));
+  };
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
+    if (loginRef.current !== null && passwordRef.current !== null) {
+      onSubmit({
+        login: loginRef.current.value,
+        password: passwordRef.current.value,
+      });
+    }
+  };
+
   return(
     <section className="login">
       <Helmet>
@@ -13,20 +40,20 @@ const Login: FC = () => {
       <h2 className="login__title">Вы настоящий меломан!</h2>
       <p className="login__text">Хотите узнать свой результат? Представтесь!</p>
 
-      <form className="login__form" action="">
+      <form className="login__form" action="" onSubmit={handleSubmit}>
         <p className="login__field">
           <label className="login__label" htmlFor="name">Логин</label>
-          <input className="login__input" type="text" name="name" id="name"/>
+          <input ref={loginRef} className="login__input" type="text" name="name" id="name" />
         </p>
         <p className="login__field">
           <label className="login__label" htmlFor="password">Пароль</label>
-          <input className="login__input" type="text" name="password" id="password"/>
+          <input ref={passwordRef} className="login__input" type="text" name="password" id="password" />
           <span className="login__error">Неверный пароль</span>
         </p>
         <button className="login__button button" type="submit">Войти</button>
       </form>
 
-      <button className="replay" type="button">Сыграть ещё раз</button>
+      <button onClick={() => navigate(AppRoute.Game)} className="replay" type="button" >Сыграть ещё раз</button>
     </section>
   )
 }

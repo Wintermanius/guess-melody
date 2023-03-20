@@ -1,3 +1,6 @@
+export const FIRST_GAME_STEP = 0
+export const MAX_MISTAKE_COUNT = 3
+
 export enum AppRoute {
   Login = '/login',
   Lose = '/lose',
@@ -12,10 +15,13 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export const FIRST_GAME_STEP = 0
-export const MAX_MISTAKE_COUNT = 3
-
 export enum GameType {
   Artist = 'artist',
   Genre = 'genre',
+}
+
+export enum APIRoute {
+  Questions = '/questions',
+  Login = '/login',
+  Logout = '/logout',
 }
