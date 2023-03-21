@@ -10,7 +10,7 @@ import Login from "../../pages/Login/Login";
 import NotFound from "../../pages/NotFound/NotFound";
 import Results from "../../pages/Results/Results";
 import WelcomeScreen from "../../pages/WelcomeScreen/WelcomeScreen";
-import HistoryRouter from "../HistoryRoute/HistoryRpoute";
+import HistoryRouter from "../HistoryRoute/HistoryRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 function App(): JSX.Element {
@@ -28,8 +28,9 @@ function App(): JSX.Element {
     <HelmetProvider>
       <HistoryRouter history={browserHistory}>
         <Routes>
-          <Route path={AppRoute.Root} element={<WelcomeScreen errorsCount={MAX_MISTAKE_COUNT} />}/>
           <Route path={AppRoute.Login} element={<Login />} />
+          <Route path={AppRoute.Root} element={<WelcomeScreen errorsCount={MAX_MISTAKE_COUNT} />}/>
+          
           <Route path={AppRoute.Game} element={<GameScreen />}/>
           <Route path={AppRoute.Result} element={
             <PrivateRoute authorizationStatus={authorizationStatus}>
