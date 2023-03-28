@@ -1,8 +1,9 @@
 import { HelmetProvider } from "react-helmet-async";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import browserHistory from "../../browser-history";
-import { AppRoute, AuthorizationStatus, MAX_MISTAKE_COUNT } from "../../const";
+import { AppRoute, MAX_MISTAKE_COUNT } from "../../const";
 import { useAppSelector } from "../../hooks";
+import ErrorScreen from "../../pages/ErrorScreen/ErrorScreen";
 import Fail from "../../pages/Fail/Fail";
 import GameScreen from "../../pages/GameScreen/GameScreen";
 import LoadingScreen from "../../pages/LoadingScreen/LoadingScreen";
@@ -10,18 +11,27 @@ import Login from "../../pages/Login/Login";
 import NotFound from "../../pages/NotFound/NotFound";
 import Results from "../../pages/Results/Results";
 import WelcomeScreen from "../../pages/WelcomeScreen/WelcomeScreen";
-import HistoryRouter from "../HistoryRoute/HistoryRoute";
+import { getErrorStatus, getQuestionsDataLoadingStatus } from "../../store/game-data/selectors";
+import { getAuthCheckedStatus, getAuthorizationStatus } from "../../store/user-process/selectors";
+import HistoryRouter from "../HistoryRouter/HistoryRouter";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 function App(): JSX.Element {
 
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isQuestionsDataLoading = useAppSelector((state) => state.isQuestionsDataLoading);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isQuestionsDataLoading = useAppSelector(getQuestionsDataLoadingStatus);
+  const isAuthChecked = useAppSelector(getAuthCheckedStatus);
+  const hasError = useAppSelector(getErrorStatus);
 
-  if (authorizationStatus === AuthorizationStatus.Unknown || isQuestionsDataLoading) {
+  if (!isAuthChecked || isQuestionsDataLoading) {
     return (
       <LoadingScreen />
     );
+  }
+
+  if (hasError) {
+    return (
+      <ErrorScreen />);
   }
 
   return (

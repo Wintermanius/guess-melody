@@ -1,6 +1,7 @@
-import { ChangeEvent, FC, FormEvent, PropsWithChildren, useState } from "react";
+import { FC, PropsWithChildren } from "react";
 import { Helmet } from "react-helmet-async";
 import Logo from "../../assets/img/melody-logo.png"
+import GenreQuestionList from "../../components/GenreQuestionList/GenreQuestionList";
 import { QuestionGenre, UserGenreQuestionAnswer } from "../../types/question";
 
 type QuestionGenreScreenProps = PropsWithChildren<{
@@ -10,9 +11,8 @@ type QuestionGenreScreenProps = PropsWithChildren<{
 }>
 
 const QuestionGenreScreen: FC<QuestionGenreScreenProps> = ({ question, onAnswer, renderPlayer, children }) => {
-
-  const {answers, genre} = question
-  const [userAnswers, setUserAnswers] = useState([false, false, false, false])
+  
+  const {genre} = question;
 
   return(
     <section className="game game--genre">
@@ -31,35 +31,11 @@ const QuestionGenreScreen: FC<QuestionGenreScreenProps> = ({ question, onAnswer,
 
       <section className="game__screen">
         <h2 className="game__title">Выберите инди-рок треки</h2>
-        <form className="game__tracks" onSubmit={(evt: FormEvent<HTMLFormElement>) => {
-          evt.preventDefault();
-          onAnswer(question, userAnswers);
-        }}>
-          {answers.map((answer, id) => {
-            const keyValue = `${id}-${answer.src}`;
-            return (
-
-              <div key={keyValue} className="track">
-                
-                {renderPlayer(answer.src, id)}
-
-                <div className="game__answer">
-                  <input className="game__input visually-hidden" type="checkbox" name="answer"
-                    value={`answer-${id}`}
-                    id={`answer-${id}`}
-                    checked={userAnswers[id]}
-                    onChange={({target}: ChangeEvent<HTMLInputElement>) => {
-                      const value = target.checked;
-                      setUserAnswers([...userAnswers.slice(0, id), value, ...userAnswers.slice(id + 1)]);
-                    }}
-                  />
-                  <label className="game__check" htmlFor={`answer-${id}`}>Отметить</label>
-                </div>
-              </div>
-            );
-          })}
-          <button className="game__submit button" type="submit">Ответить</button>
-        </form>
+        <GenreQuestionList
+          question={question}
+          onAnswer={onAnswer}
+          renderPlayer={renderPlayer}
+        />
       </section>
     </section>
   )

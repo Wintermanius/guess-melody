@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/img/melody-logo.png"
 import { AppRoute } from "../../const";
 import { useAppDispatch } from "../../hooks";
-import { resetGame } from "../../store/action";
+import { resetGame } from "../../store/game-process/game-process";
 
 type WelcomeScreenProps = {
   errorsCount: number;

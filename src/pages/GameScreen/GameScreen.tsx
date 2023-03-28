@@ -1,21 +1,22 @@
-import { FC } from "react";
 import { Navigate } from "react-router-dom";
 import { AppRoute, GameType, MAX_MISTAKE_COUNT } from "../../const";
-import { Question, Questions, UserAnswer } from "../../types/question";
+import { Question, UserAnswer } from "../../types/question";
 import QuestionArtistScreen from "../QuestionArtistScreen/QuestionArtistScreen";
 import QuestionGenreScreen from "../QuestionGenreScreen/QuestionGenreScreen";
 import withAudioPlayer from "../../components/hocs/with-AudioPlayer/with-AudioPlayer";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { checkUserAnswer, incrementStep } from "../../store/action";
+import { checkUserAnswer, incrementStep } from "../../store/game-process/game-process";
 import Mistakes from "../../components/Mistakes/mistakes";
+import { getMistakeCount, getStep } from "../../store/game-process/selectors";
+import { getQuestions } from "../../store/game-data/selectors";
 
 const QuestionArtistScreenWrapped = withAudioPlayer(QuestionArtistScreen);
 const QuestionGenreScreenWrapped = withAudioPlayer(QuestionGenreScreen);
 
 function GameScreen(): JSX.Element {
-  const step = useAppSelector((state) => state.step);
-  const mistakes = useAppSelector((state) => state.mistakes);
-  const questions = useAppSelector((state) => state.questions);
+  const step = useAppSelector(getStep);
+  const mistakes = useAppSelector(getMistakeCount);
+  const questions = useAppSelector(getQuestions);
 
   const question = questions[step]
 
